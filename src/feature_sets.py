@@ -22,7 +22,7 @@ class User:
 	last_name: str
 	first_name: str
 	stock: str
-	num_shars: int
+	num_shares: int
 	purchase_price: float
 	total_investment: float
 	desired_roi: float
@@ -32,11 +32,11 @@ class User:
 
 @online
 async def get_user_current_profit(
-	symbol: User.symbol,
+	stock: User.stock,
 	shares: User.num_shares,
-	investment: User.investment) -> User.profit:
+	investment: User.total_investment) -> User.profit:
 	with open('../no_push/finnhub_key.txt') as f:
         	key = f.read()
-	r = requests.get('https://finnhub.io/api/v1/quote', params = {'symbol': symbol, 'token': key}
+	r = requests.get('https://finnhub.io/api/v1/quote', params = {'symbol': stock, 'token': key})
 	curr_price = ast.literal_eval(r.text)['c']
-	return (shares * curr_price) - investment
+	return (shares * curr_price) - total_investment
