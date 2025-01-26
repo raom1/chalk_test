@@ -35,7 +35,7 @@ async def get_user_current_profit(
 	symbol: User.symbol,
 	shares: User.num_shares,
 	investment: User.investment) -> User.profit:
-	with open('../no_push/finnub_key.txt') as f:
+	with open('../no_push/finnhub_key.txt') as f:
         	key = f.read()
 	r = requests.get('https://finnhub.io/api/v1/quote', params = {'symbol': symbol, 'token': key}
 	curr_price = ast.literal_eval(r.text)['c']
