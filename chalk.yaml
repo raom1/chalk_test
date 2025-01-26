@@ -1,0 +1,5 @@
+project: chalk_test_proj
+environments:
+    default:
+        runtime: python311
+        requirements: requirements.txt
